@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1706.03762",
+    "title": "Attention Is All You Need",
+    "authors": ["Vaswani, A.", "Shazeer, N.", "Parmar, N.", "Uszkoreit, J."],
+    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+    "url": "https://arxiv.org/abs/1706.03762",
+    "year": 2017,
+    "categories": ["cs.CL", "cs.LG"]
+  },
+  {
+    "id": "1810.04805",
+    "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+    "authors": ["Devlin, J.", "Chang, M.", "Lee, K.", "Toutanova, K."],
+    "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.",
+    "url": "https://arxiv.org/abs/1810.04805",
+    "year": 2018,
+    "categories": ["cs.CL"]
+  },
+  {
+    "id": "2005.11401",
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "authors": ["Lewis, P.", "Perez, E.", "Piktus, A.", "Petroni, F."],
+    "abstract": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation, which combines parametric and non-parametric memory for language generation.",
+    "url": "https://arxiv.org/abs/2005.11401",
+    "year": 2020,
+    "categories": ["cs.CL", "cs.IR"]
+  },
+  {
+    "id": "2010.11929",
+    "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+    "authors": ["Dosovitskiy, A.", "Beyer, L.", "Kolesnikov, A."],
+    "abstract": "While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place.",
+    "url": "https://arxiv.org/abs/2010.11929",
+    "year": 2020,
+    "categories": ["cs.CV", "cs.LG"]
+  },
+  {
+    "id": "1301.3666",
+    "title": "Efficient Estimation of Word Representations in Vector Space",
+    "authors": ["Mikolov, T.", "Chen, K.", "Corrado, G.", "Dean, J."],
+    "abstract": "We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks.",
+    "url": "https://arxiv.org/abs/1301.3666",
+    "year": 2013,
+    "categories": ["cs.CL"]
+  }
+]
