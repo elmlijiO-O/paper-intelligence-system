@@ -1,5 +1,39 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>Attention Visualization</h1>
-<p>Frontend coming soon.</p>
+{% extends "base.html" %} {% block title %}Attention — {{ paper_id }} · Paper
+Intelligence{% endblock %} {% block content %}
+<div class="page-header">
+  <a class="back-link" href="javascript:history.back()">← Back</a>
+  <h1 class="page-title">Attention Heatmap</h1>
+  <p class="page-sub">
+    BERT (bert-base-uncased) · Last layer · Averaged over all heads · Truncated
+    to 64 tokens
+  </p>
+</div>
+
+<div class="attention-wrap" id="attentionWrap">
+  <div class="loading-state" id="loadingState">
+    <div class="spinner">◌</div>
+    <p>Running BERT attention… this may take a moment.</p>
+  </div>
+
+  <div class="attention-content hidden" id="attentionContent">
+    <div class="attention-meta" id="attentionMeta"></div>
+    <div class="attention-canvas-wrap">
+      <canvas id="attentionChart"></canvas>
+    </div>
+    <p class="attention-legend">
+      <strong>How to read this:</strong> Each cell [i, j] shows how much token
+      <em>i</em> attends to token <em>j</em>. Darker = stronger attention.
+      Diagonal dominance is normal — tokens often attend to themselves.
+    </p>
+  </div>
+
+  <div class="error-state hidden" id="errorState">
+    <p class="error-msg" id="errorMsg">Failed to load attention data.</p>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='attention.js') }}"></script>
+<script>
+  loadAttention("{{ paper_id }}");
+</script>
 {% endblock %}
