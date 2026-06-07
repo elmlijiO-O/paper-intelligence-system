@@ -1,5 +1,131 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Compare Methods</h1>
-<p>Frontend coming soon.</p>
+
+<h1>Compare Retrieval Methods</h1>
+<p style="color:#555; font-size:14px;">
+  Enter a query to see how TF-IDF and Transformer-based retrieval rank papers differently.
+</p>
+
+<div style="display:flex; gap:10px; margin-bottom:30px;">
+  <input
+    id="compare-input"
+    type="text"
+    placeholder="e.g. transformer attention mechanism"
+    style="flex:1; padding:10px 14px; font-size:15px; border:1px solid #ccc; border-radius:6px;"
+  />
+  <button
+    onclick="runCompare()"
+    style="padding:10px 22px; background:#222; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:15px;"
+  >
+    Compare
+  </button>
+</div>
+
+<div id="loading" style="display:none; color:#888;">Running both models...</div>
+<div id="error-msg" style="display:none; color:red;"></div>
+
+<div id="results" style="display:none;">
+  <div style="margin-bottom:16px;">
+    <strong>Overlap:</strong>
+    <span id="overlap-count"></span> papers appeared in both rankings.
+  </div>
+
+  <canvas id="terms-chart" height="80" style="margin-bottom:30px;"></canvas>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+    <div>
+      <h2 style="font-size:16px; border-bottom:2px solid #f0c040; padding-bottom:6px;">
+        TF-IDF Results
+      </h2>
+      <div id="tfidf-results"></div>
+    </div>
+    <div>
+      <h2 style="font-size:16px; border-bottom:2px solid #4090f0; padding-bottom:6px;">
+        Transformer Results
+      </h2>
+      <div id="transformer-results"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .result-card {
+    border:1px solid #eee; border-radius:8px;
+    padding:12px 14px; margin-bottom:10px;
+    font-size:13px;
+  }
+  .result-card .r-title { font-weight:600; margin-bottom:4px; font-size:14px; }
+  .result-card .r-authors { color:#777; margin-bottom:4px; }
+  .result-card .r-year { color:#aaa; font-size:12px; }
+  .overlap-badge {
+    display:inline-block; background:#e6f4ea;
+    color:#1a7a3a; font-size:11px; border-radius:4px;
+    padding:1px 6px; margin-left:6px;
+  }
+</style>
+
+<script src="{{ url_for('static', filename='compare.js') }}"></script>
+<script>
+  let chartInstance = null;
+
+  async function runCompare() {
+    const q = document.getElementById("compare-input").value.trim();
+    if (!q) return;
+
+    document.getElementById("loading").style.display = "block";
+    document.getElementById("results").style.display = "none";
+    document.getElementById("error-msg").style.display = "none";
+
+    try {
+      const res = await fetch(`/api/compare?q=${encodeURIComponent(q)}&limit=5`);
+      const data = await res.json();
+
+      if (data.error) {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("error-msg").style.display = "block";
+        document.getElementById("error-msg").textContent = data.message;
+        return;
+      }
+
+      document.getElementById("overlap-count").textContent = data.overlap_count;
+
+      renderResults("tfidf-results", data.tfidf.results, data.overlap_ids);
+      renderResults("transformer-results", data.transformer.results, data.overlap_ids);
+      renderChart(data.tfidf.top_terms, data.transformer.top_terms);
+
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("results").style.display = "block";
+
+    } catch (err) {
+      document.getElementById("loading").textContent = "Request failed.";
+    }
+  }
+
+  function renderResults(containerId, papers, overlapIds) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    if (!papers || papers.length === 0) {
+      container.innerHTML = "<p style='color:#aaa'>No results.</p>";
+      return;
+    }
+    papers.forEach((p, i) => {
+      const isOverlap = overlapIds.includes(p.id);
+      const card = document.createElement("div");
+      card.className = "result-card";
+      card.innerHTML = `
+        <div class="r-title">
+          #${i+1} <a href="/paper/${p.id}" style="color:#222;">${p.title}</a>
+          ${isOverlap ? '<span class="overlap-badge">in both</span>' : ''}
+        </div>
+        <div class="r-authors">${p.authors.slice(0,3).join(", ")}</div>
+        <div class="r-year">${p.year} · ${p.categories.join(", ")}</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  document.getElementById("compare-input").addEventListener("keydown", e => {
+    if (e.key === "Enter") runCompare();
+  });
+</script>
 {% endblock %}

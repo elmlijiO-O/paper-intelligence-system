@@ -1,5 +1,137 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Paper Detail</h1>
-<p>Frontend coming soon.</p>
+
+<div id="loading">Loading paper...</div>
+<div id="error-msg" style="display:none; color:red;"></div>
+
+<div id="paper-content" style="display:none;">
+  <h1 id="paper-title"></h1>
+  <p id="paper-authors" style="color:#555; font-size:14px;"></p>
+  <p id="paper-meta" style="color:#888; font-size:13px;"></p>
+  <a id="paper-url" href="#" target="_blank" style="font-size:13px;">View on arXiv ↗</a>
+
+  <div class="tabs" style="margin-top:30px;">
+    <button class="tab-btn active" onclick="showTab('summary')">Summary</button>
+    <button class="tab-btn" onclick="showTab('keywords')">Keywords</button>
+    <button class="tab-btn" onclick="showTab('concepts')">Concepts</button>
+    <button class="tab-btn" onclick="showTab('attention')">Attention</button>
+  </div>
+
+  <div id="tab-summary" class="tab-panel">
+    <h2>Summary</h2>
+    <p id="summary-text"></p>
+    <h3>Original Abstract</h3>
+    <p id="abstract-text" style="color:#555; font-size:14px; line-height:1.7;"></p>
+  </div>
+
+  <div id="tab-keywords" class="tab-panel" style="display:none;">
+    <h2>Keywords</h2>
+    <div id="keywords-list"></div>
+  </div>
+
+  <div id="tab-concepts" class="tab-panel" style="display:none;">
+    <h2>Key Concepts</h2>
+    <div id="concepts-list"></div>
+  </div>
+
+  <div id="tab-attention" class="tab-panel" style="display:none;">
+    <h2>Attention Visualization</h2>
+    <p style="color:#888; font-size:13px;">
+      This tab will render once Person B's attention module is merged.
+      <br>
+      <a id="attention-link" href="#">Open full attention page ↗</a>
+    </p>
+  </div>
+</div>
+
+<style>
+  .tabs { display:flex; gap:8px; border-bottom:2px solid #eee; padding-bottom:0; }
+  .tab-btn {
+    padding:8px 18px; border:none; background:none;
+    cursor:pointer; font-size:14px; border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active { border-bottom:2px solid #333; font-weight:600; }
+  .tab-panel { padding:20px 0; }
+  .keyword-pill {
+    display:inline-block; background:#f0f0f0; border-radius:20px;
+    padding:5px 14px; margin:4px; font-size:13px;
+  }
+  .concept-card {
+    border:1px solid #eee; border-radius:8px;
+    padding:14px 18px; margin-bottom:12px;
+  }
+  .concept-term { font-weight:600; font-size:15px; margin-bottom:4px; }
+  .concept-exp { color:#555; font-size:14px; line-height:1.6; }
+</style>
+
+<script>
+  const arxivId = "{{ arxiv_id }}";
+
+  async function loadPaper() {
+    try {
+      const res = await fetch(`/api/paper/${arxivId}`);
+      const data = await res.json();
+
+      if (data.error) {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("error-msg").style.display = "block";
+        document.getElementById("error-msg").textContent = data.message;
+        return;
+      }
+
+      // Header
+      document.getElementById("paper-title").textContent = data.paper.title;
+      document.getElementById("paper-authors").textContent = data.paper.authors.join(", ");
+      document.getElementById("paper-meta").textContent =
+        `${data.paper.year} · ${data.paper.categories.join(", ")}`;
+      document.getElementById("paper-url").href = data.paper.url;
+
+      // Summary tab
+      document.getElementById("summary-text").textContent = data.summary;
+      document.getElementById("abstract-text").textContent = data.paper.abstract;
+
+      // Keywords tab
+      const kwList = document.getElementById("keywords-list");
+      data.keywords.forEach(kw => {
+        const pill = document.createElement("span");
+        pill.className = "keyword-pill";
+        pill.textContent = kw;
+        kwList.appendChild(pill);
+      });
+
+      // Concepts tab
+      const conceptList = document.getElementById("concepts-list");
+      if (data.concepts && data.concepts.length > 0) {
+        data.concepts.forEach(c => {
+          const card = document.createElement("div");
+          card.className = "concept-card";
+          card.innerHTML = `<div class="concept-term">${c.term}</div>
+                            <div class="concept-exp">${c.explanation}</div>`;
+          conceptList.appendChild(card);
+        });
+      } else {
+        conceptList.innerHTML = "<p style='color:#888'>Concepts will appear after merge.</p>";
+      }
+
+      // Attention tab link
+      document.getElementById("attention-link").href = `/attention/${arxivId}`;
+
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("paper-content").style.display = "block";
+
+    } catch (err) {
+      document.getElementById("loading").textContent = "Failed to load paper.";
+    }
+  }
+
+  function showTab(name) {
+    document.querySelectorAll(".tab-panel").forEach(p => p.style.display = "none");
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById(`tab-${name}`).style.display = "block";
+    event.target.classList.add("active");
+  }
+
+  loadPaper();
+</script>
 {% endblock %}
