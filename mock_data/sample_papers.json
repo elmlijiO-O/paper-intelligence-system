@@ -1,47 +1,509 @@
 [
   {
-    "id": "1706.03762",
-    "title": "Attention Is All You Need",
-    "authors": ["Vaswani, A.", "Shazeer, N.", "Parmar, N.", "Uszkoreit, J."],
-    "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
-    "url": "https://arxiv.org/abs/1706.03762",
-    "year": 2017,
-    "categories": ["cs.CL", "cs.LG"]
+    "id": "2209.15001v3",
+    "title": "Dilated Neighborhood Attention Transformer",
+    "authors": [
+      "Ali Hassani",
+      "Humphrey Shi"
+    ],
+    "abstract": "Transformers are quickly becoming one of the most heavily applied deep learning architectures across modalities, domains, and tasks. In vision, on top of ongoing efforts into plain transformers, hierarchical transformers have also gained significant attention, thanks to their performance and easy integration into existing frameworks. These models typically employ localized attention mechanisms, such as the sliding-window Neighborhood Attention (NA) or Swin Transformer's Shifted Window Self Attention. While effective at reducing self attention's quadratic complexity, local attention weakens two of the most desirable properties of self attention: long range inter-dependency modeling, and global receptive field. In this paper, we introduce Dilated Neighborhood Attention (DiNA), a natural, flexible and efficient extension to NA that can capture more global context and expand receptive fields exponentially at no additional cost. NA's local attention and DiNA's sparse global attention complement each other, and therefore we introduce Dilated Neighborhood Attention Transformer (DiNAT), a new hierarchical vision transformer built upon both. DiNAT variants enjoy significant improvements over strong baselines such as NAT, Swin, and ConvNeXt. Our large model is faster and ahead of its Swin counterpart by 1.6% box AP in COCO object detection, 1.4% mask AP in COCO instance segmentation, and 1.4% mIoU in ADE20K semantic segmentation. Paired with new frameworks, our large variant is the new state of the art panoptic segmentation model on COCO (58.5 PQ) and ADE20K (49.4 PQ), and instance segmentation model on Cityscapes (45.1 AP) and ADE20K (35.4 AP) (no extra data). It also matches the state of the art specialized semantic segmentation models on ADE20K (58.1 mIoU), and ranks second on Cityscapes (84.5 mIoU) (no extra data).",
+    "url": "https://arxiv.org/abs/2209.15001v3",
+    "year": 2022,
+    "categories": [
+      "cs.CV"
+    ]
   },
   {
-    "id": "1810.04805",
-    "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-    "authors": ["Devlin, J.", "Chang, M.", "Lee, K.", "Toutanova, K."],
-    "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers.",
-    "url": "https://arxiv.org/abs/1810.04805",
+    "id": "2605.26355",
+    "title": "Energy-Gated Attention and Wavelet Positional Encoding: Complementary Inductive Biases for Transformer Attention",
+    "authors": [
+      "Athanasios Zeris"
+    ],
+    "abstract": "Standard transformer attention computes pairwise token similarity but treats all tokens as equally salient and all positions as equally local, regardless of the informational structure of the input. We identify two complementary inductive biases that standard attention lacks: energy salience (which tokens concentrate informational energy, learned end-to-end without explicit frequency decomposition) and scale-selective locality (how far positional influence extends at each frequency, implemented via Morlet wavelet encoding). We address both with two simple components. Energy-Gated Attention (EGA) gates value aggregation by a learned energy estimate of key token embeddings, computed via a single linear projection; it selects what to attend to. Morlet Positional Encoding (MoPE) replaces fixed sinusoidal encodings with learned Gaussian-windowed wavelets that adapt the joint position-frequency localization to the corpus; it specifies where attention operates at each scale. On TinyShakespeare, EGA alone achieves +0.092 validation loss improvement over standard attention (+0.103 over Phase 1-3 baseline); MoPE alone is -0.032 (below baseline as a standalone encoding); but their combination achieves +0.119 -- more than the sum of parts. This superadditivity, observed across two independent training runs, is the central empirical finding: salience and locality are complementary inductive biases, each addressing a gap the other cannot fill alone. Ablations confirm that structured spectral priors (Morlet wavelet gates, scale-initialized heads, fixed sinusoidal PE) consistently underperform their unconstrained learned counterparts, while complementary learned components interact superadditively. All experiments are at small scale (<=6M parameters, character-level benchmarks, single seed); larger-scale multi-seed validation is the most important direction for future work.",
+    "url": "https://arxiv.org/abs/2605.26355",
+    "year": 2026,
+    "categories": [
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2309.01692",
+    "title": "Mask-Attention-Free Transformer for 3D Instance Segmentation",
+    "authors": [
+      "Xin Lai",
+      "Yuhui Yuan",
+      "Ruihang Chu",
+      "Yukang Chen",
+      "Han Hu",
+      "Jiaya Jia"
+    ],
+    "abstract": "Recently, transformer-based methods have dominated 3D instance segmentation, where mask attention is commonly involved. Specifically, object queries are guided by the initial instance masks in the first cross-attention, and then iteratively refine themselves in a similar manner. However, we observe that the mask-attention pipeline usually leads to slow convergence due to low-recall initial instance masks. Therefore, we abandon the mask attention design and resort to an auxiliary center regression task instead. Through center regression, we effectively overcome the low-recall issue and perform cross-attention by imposing positional prior. To reach this goal, we develop a series of position-aware designs. First, we learn a spatial distribution of 3D locations as the initial position queries. They spread over the 3D space densely, and thus can easily capture the objects in a scene with a high recall. Moreover, we present relative position encoding for the cross-attention and iterative refinement for more accurate position queries. Experiments show that our approach converges 4x faster than existing work, sets a new state of the art on ScanNetv2 3D instance segmentation benchmark, and also demonstrates superior performance across various datasets. Code and models are available at https://github.com/dvlab-research/Mask-Attention-Free-Transformer.",
+    "url": "https://arxiv.org/abs/2309.01692",
+    "year": 2023,
+    "categories": [
+      "cs.CV"
+    ]
+  },
+  {
+    "id": "2402.04563",
+    "title": "Attention Guided CAM: Visual Explanations of Vision Transformer Guided by Self-Attention",
+    "authors": [
+      "Saebom Leem",
+      "Hyunseok Seo"
+    ],
+    "abstract": "Vision Transformer(ViT) is one of the most widely used models in the computer vision field with its great performance on various tasks. In order to fully utilize the ViT-based architecture in various applications, proper visualization methods with a decent localization performance are necessary, but these methods employed in CNN-based models are still not available in ViT due to its unique structure. In this work, we propose an attention-guided visualization method applied to ViT that provides a high-level semantic explanation for its decision. Our method selectively aggregates the gradients directly propagated from the classification output to each self-attention, collecting the contribution of image features extracted from each location of the input image. These gradients are additionally guided by the normalized self-attention scores, which are the pairwise patch correlation scores. They are used to supplement the gradients on the patch-level context information efficiently detected by the self-attention mechanism. This approach of our method provides elaborate high-level semantic explanations with great localization performance only with the class labels. As a result, our method outperforms the previous leading explainability methods of ViT in the weakly-supervised localization task and presents great capability in capturing the full instances of the target class object. Meanwhile, our method provides a visualization that faithfully explains the model, which is demonstrated in the perturbation comparison test.",
+    "url": "https://arxiv.org/abs/2402.04563",
+    "year": 2024,
+    "categories": [
+      "cs.CV"
+    ]
+  },
+  {
+    "id": "1809.04281v3",
+    "title": "Music Transformer",
+    "authors": [
+      "Cheng-Zhi Anna Huang",
+      "Ashish Vaswani",
+      "Jakob Uszkoreit",
+      "Noam Shazeer",
+      "Ian Simon",
+      "Curtis Hawthorne",
+      "Andrew M. Dai",
+      "Matthew D. Hoffman",
+      "Monica Dinculescu",
+      "Douglas Eck"
+    ],
+    "abstract": "Music relies heavily on repetition to build structure and meaning. Self-reference occurs on multiple timescales, from motifs to phrases to reusing of entire sections of music, such as in pieces with ABA structure. The Transformer (Vaswani et al., 2017), a sequence model based on self-attention, has achieved compelling results in many generation tasks that require maintaining long-range coherence. This suggests that self-attention might also be well-suited to modeling music. In musical composition and performance, however, relative timing is critically important. Existing approaches for representing relative positional information in the Transformer modulate attention based on pairwise distance (Shaw et al., 2018). This is impractical for long sequences such as musical compositions since their memory complexity for intermediate relative information is quadratic in the sequence length. We propose an algorithm that reduces their intermediate memory requirement to linear in the sequence length. This enables us to demonstrate that a Transformer with our modified relative attention mechanism can generate minute-long compositions (thousands of steps, four times the length modeled in Oore et al., 2018) with compelling structure, generate continuations that coherently elaborate on a given motif, and in a seq2seq setup generate accompaniments conditioned on melodies. We evaluate the Transformer with our relative attention mechanism on two datasets, JSB Chorales and Piano-e-Competition, and obtain state-of-the-art results on the latter.",
+    "url": "https://arxiv.org/abs/1809.04281v3",
     "year": 2018,
-    "categories": ["cs.CL"]
+    "categories": [
+      "cs.LG"
+    ]
   },
   {
-    "id": "2005.11401",
-    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
-    "authors": ["Lewis, P.", "Perez, E.", "Piktus, A.", "Petroni, F."],
-    "abstract": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. We explore a general-purpose fine-tuning recipe for retrieval-augmented generation, which combines parametric and non-parametric memory for language generation.",
-    "url": "https://arxiv.org/abs/2005.11401",
-    "year": 2020,
-    "categories": ["cs.CL", "cs.IR"]
+    "id": "2206.03003",
+    "title": "Transformer-based Personalized Attention Mechanism for Medical Images with Clinical Records",
+    "authors": [
+      "Yusuke Takagi",
+      "Noriaki Hashimoto",
+      "Hiroki Masuda",
+      "Hiroaki Miyoshi",
+      "Koichi Ohshima",
+      "Hidekata Hontani",
+      "Ichiro Takeuchi"
+    ],
+    "abstract": "In medical image diagnosis, identifying the attention region, i.e., the region of interest for which the diagnosis is made, is an important task. Various methods have been developed to automatically identify target regions from given medical images. However, in actual medical practice, the diagnosis is made based not only on the images but also on a variety of clinical records. This means that pathologists examine medical images with some prior knowledge of the patients and that the attention regions may change depending on the clinical records. In this study, we propose a method called the Personalized Attention Mechanism (PersAM), by which the attention regions in medical images are adaptively changed according to the clinical records. The primary idea of the PersAM method is to encode the relationships between the medical images and clinical records using a variant of Transformer architecture. To demonstrate the effectiveness of the PersAM method, we applied it to a large-scale digital pathology problem of identifying the subtypes of 842 malignant lymphoma patients based on their gigapixel whole slide images and clinical records.",
+    "url": "https://arxiv.org/abs/2206.03003",
+    "year": 2022,
+    "categories": [
+      "eess.IV"
+    ]
   },
   {
-    "id": "2010.11929",
-    "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
-    "authors": ["Dosovitskiy, A.", "Beyer, L.", "Kolesnikov, A."],
-    "abstract": "While the Transformer architecture has become the de-facto standard for natural language processing tasks, its applications to computer vision remain limited. In vision, attention is either applied in conjunction with convolutional networks, or used to replace certain components of convolutional networks while keeping their overall structure in place.",
-    "url": "https://arxiv.org/abs/2010.11929",
-    "year": 2020,
-    "categories": ["cs.CV", "cs.LG"]
+    "id": "2503.02130",
+    "title": "Forgetting Transformer: Softmax Attention with a Forget Gate",
+    "authors": [
+      "Zhixuan Lin",
+      "Evgenii Nikishin",
+      "Xu Owen He",
+      "Aaron Courville"
+    ],
+    "abstract": "An essential component of modern recurrent sequence models is the forget gate. While Transformers do not have an explicit recurrent form, we show that a forget gate can be naturally incorporated into Transformers by down-weighting the unnormalized attention scores in a data-dependent way. We name this attention mechanism Forgetting Attention and the resulting model the Forgetting Transformer (FoX). We show that FoX outperforms the Transformer on long-context language modeling, length extrapolation, and short-context downstream tasks, while performing on par with the Transformer on long-context downstream tasks. Moreover, it is compatible with the FlashAttention algorithm and does not require any positional embeddings. Several analyses, including the needle-in-the-haystack test, show that FoX also retains the Transformer's superior long-context capabilities over recurrent sequence models such as Mamba-2, HGRN2, and DeltaNet. We also introduce a \"Pro\" block design that incorporates some common architectural components in recurrent sequence models and find it significantly improves the performance of both FoX and the Transformer. Our code is available at https://github.com/zhixuan-lin/forgetting-transformer.",
+    "url": "https://arxiv.org/abs/2503.02130",
+    "year": 2025,
+    "categories": [
+      "cs.LG"
+    ]
   },
   {
-    "id": "1301.3666",
-    "title": "Efficient Estimation of Word Representations in Vector Space",
-    "authors": ["Mikolov, T.", "Chen, K.", "Corrado, G.", "Dean, J."],
-    "abstract": "We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks.",
-    "url": "https://arxiv.org/abs/1301.3666",
+    "id": "2305.11403v5",
+    "title": "Efficient Mixed Transformer for Single Image Super-Resolution",
+    "authors": [
+      "Ling Zheng",
+      "Jinchen Zhu",
+      "Jinpeng Shi",
+      "Shizhuang Weng"
+    ],
+    "abstract": "Recently, Transformer-based methods have achieved impressive results in single image super-resolution (SISR). However, the lack of locality mechanism and high complexity limit their application in the field of super-resolution (SR). To solve these problems, we propose a new method, Efficient Mixed Transformer (EMT) in this study. Specifically, we propose the Mixed Transformer Block (MTB), consisting of multiple consecutive transformer layers, in some of which the Pixel Mixer (PM) is used to replace the Self-Attention (SA). PM can enhance the local knowledge aggregation with pixel shifting operations. At the same time, no additional complexity is introduced as PM has no parameters and floating-point operations. Moreover, we employ striped window for SA (SWSA) to gain an efficient global dependency modelling by utilizing image anisotropy. Experimental results show that EMT outperforms the existing methods on benchmark dataset and achieved state-of-the-art performance. The Code is available at https://github.com/Fried-Rice-Lab/FriedRiceLab.",
+    "url": "https://arxiv.org/abs/2305.11403v5",
+    "year": 2023,
+    "categories": [
+      "cs.CV"
+    ]
+  },
+  {
+    "id": "2104.04167",
+    "title": "The Road to Know-Where: An Object-and-Room Informed Sequential BERT for Indoor Vision-Language Navigation",
+    "authors": [
+      "Yuankai Qi",
+      "Zizheng Pan",
+      "Yicong Hong",
+      "Ming-Hsuan Yang",
+      "Anton van den Hengel",
+      "Qi Wu"
+    ],
+    "abstract": "Vision-and-Language Navigation (VLN) requires an agent to find a path to a remote location on the basis of natural-language instructions and a set of photo-realistic panoramas. Most existing methods take the words in the instructions and the discrete views of each panorama as the minimal unit of encoding. However, this requires a model to match different nouns (e.g., TV, table) against the same input view feature. In this work, we propose an object-informed sequential BERT to encode visual perceptions and linguistic instructions at the same fine-grained level, namely objects and words. Our sequential BERT also enables the visual-textual clues to be interpreted in light of the temporal context, which is crucial to multi-round VLN tasks. Additionally, we enable the model to identify the relative direction (e.g., left/right/front/back) of each navigable location and the room type (e.g., bedroom, kitchen) of its current and final navigation goal, as such information is widely mentioned in instructions implying the desired next and final locations. We thus enable the model to know-where the objects lie in the images, and to know-where they stand in the scene. Extensive experiments demonstrate the effectiveness compared against several state-of-the-art methods on three indoor VLN tasks: REVERIE, NDH, and R2R. Project repository: https://github.com/YuankaiQi/ORIST",
+    "url": "https://arxiv.org/abs/2104.04167",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "1909.10351v5",
+    "title": "TinyBERT: Distilling BERT for Natural Language Understanding",
+    "authors": [
+      "Xiaoqi Jiao",
+      "Yichun Yin",
+      "Lifeng Shang",
+      "Xin Jiang",
+      "Xiao Chen",
+      "Linlin Li",
+      "Fang Wang",
+      "Qun Liu"
+    ],
+    "abstract": "Language model pre-training, such as BERT, has significantly improved the performances of many natural language processing tasks. However, pre-trained language models are usually computationally expensive, so it is difficult to efficiently execute them on resource-restricted devices. To accelerate inference and reduce model size while maintaining accuracy, we first propose a novel Transformer distillation method that is specially designed for knowledge distillation (KD) of the Transformer-based models. By leveraging this new KD method, the plenty of knowledge encoded in a large teacher BERT can be effectively transferred to a small student Tiny-BERT. Then, we introduce a new two-stage learning framework for TinyBERT, which performs Transformer distillation at both the pretraining and task-specific learning stages. This framework ensures that TinyBERT can capture he general-domain as well as the task-specific knowledge in BERT.   TinyBERT with 4 layers is empirically effective and achieves more than 96.8% the performance of its teacher BERTBASE on GLUE benchmark, while being 7.5x smaller and 9.4x faster on inference. TinyBERT with 4 layers is also significantly better than 4-layer state-of-the-art baselines on BERT distillation, with only about 28% parameters and about 31% inference time of them. Moreover, TinyBERT with 6 layers performs on-par with its teacher BERTBASE.",
+    "url": "https://arxiv.org/abs/1909.10351v5",
+    "year": 2019,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2503.21676",
+    "title": "How do language models learn facts? Dynamics, curricula and hallucinations",
+    "authors": [
+      "Nicolas Zucchet",
+      "J\u00f6rg Bornschein",
+      "Stephanie Chan",
+      "Andrew Lampinen",
+      "Razvan Pascanu",
+      "Soham De"
+    ],
+    "abstract": "Large language models accumulate vast knowledge during pre-training, yet the dynamics governing this acquisition remain poorly understood. This work investigates the learning dynamics of language models on a synthetic factual recall task, uncovering three key findings: First, language models learn in three phases, exhibiting a performance plateau before acquiring precise factual knowledge. Mechanistically, this plateau coincides with the formation of attention-based circuits that support recall. Second, the training data distribution significantly impacts learning dynamics, as imbalanced distributions lead to shorter plateaus. Finally, hallucinations emerge simultaneously with knowledge, and integrating new knowledge into the model through fine-tuning is challenging, as it quickly corrupts its existing parametric memories. Our results emphasize the importance of data distribution in knowledge acquisition and suggest novel data scheduling strategies to accelerate neural network training.",
+    "url": "https://arxiv.org/abs/2503.21676",
+    "year": 2025,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2403.17811",
+    "title": "Are Compressed Language Models Less Subgroup Robust?",
+    "authors": [
+      "Leonidas Gee",
+      "Andrea Zugarini",
+      "Novi Quadrianto"
+    ],
+    "abstract": "To reduce the inference cost of large language models, model compression is increasingly used to create smaller scalable models. However, little is known about their robustness to minority subgroups defined by the labels and attributes of a dataset. In this paper, we investigate the effects of 18 different compression methods and settings on the subgroup robustness of BERT language models. We show that worst-group performance does not depend on model size alone, but also on the compression method used. Additionally, we find that model compression does not always worsen the performance on minority subgroups. Altogether, our analysis serves to further research into the subgroup robustness of model compression.",
+    "url": "https://arxiv.org/abs/2403.17811",
+    "year": 2024,
+    "categories": [
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "2307.02054v3",
+    "title": "Emoji Prediction in Tweets using BERT",
+    "authors": [
+      "Muhammad Osama Nusrat",
+      "Zeeshan Habib",
+      "Mehreen Alam",
+      "Saad Ahmed Jamal"
+    ],
+    "abstract": "In recent years, the use of emojis in social media has increased dramatically, making them an important element in understanding online communication. However, predicting the meaning of emojis in a given text is a challenging task due to their ambiguous nature. In this study, we propose a transformer-based approach for emoji prediction using BERT, a widely-used pre-trained language model. We fine-tuned BERT on a large corpus of text (tweets) containing both text and emojis to predict the most appropriate emoji for a given text. Our experimental results demonstrate that our approach outperforms several state-of-the-art models in predicting emojis with an accuracy of over 75 percent. This work has potential applications in natural language processing, sentiment analysis, and social media marketing.",
+    "url": "https://arxiv.org/abs/2307.02054v3",
+    "year": 2023,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "1910.03806",
+    "title": "Is Multilingual BERT Fluent in Language Generation?",
+    "authors": [
+      "Samuel R\u00f6nnqvist",
+      "Jenna Kanerva",
+      "Tapio Salakoski",
+      "Filip Ginter"
+    ],
+    "abstract": "The multilingual BERT model is trained on 104 languages and meant to serve as a universal language model and tool for encoding sentences. We explore how well the model performs on several languages across several tasks: a diagnostic classification probing the embeddings for a particular syntactic property, a cloze task testing the language modelling ability to fill in gaps in a sentence, and a natural language generation task testing for the ability to produce coherent text fitting a given context. We find that the currently available multilingual BERT model is clearly inferior to the monolingual counterparts, and cannot in many cases serve as a substitute for a well-trained monolingual model. We find that the English and German models perform well at generation, whereas the multilingual model is lacking, in particular, for Nordic languages.",
+    "url": "https://arxiv.org/abs/1910.03806",
+    "year": 2019,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2302.07142",
+    "title": "Semantic Importance-Aware Communications Using Pre-trained Language Models",
+    "authors": [
+      "Shuaishuai Guo",
+      "Yanhu Wang",
+      "Shujing Li",
+      "Nasir Saeed"
+    ],
+    "abstract": "This letter proposes a semantic importance-aware communication (SIAC) scheme using pre-trained language models (e.g., ChatGPT, BERT, etc.). Specifically, we propose a cross-layer design with a pre-trained language model embedded in/connected by the cross-layer manager. The pre-trained language model is utilized to quantify the semantic importance of data frames. Based on the quantified semantic importance, we investigate semantic importance-aware power allocation. Unlike existing deep joint source-channel coding (Deep-JSCC)-based semantic communication schemes, SIAC can be directly embedded into current communication systems by only introducing a cross-layer manager. Our experimental results show that the proposed SIAC scheme can achieve lower semantic loss than existing equal-priority communications.",
+    "url": "https://arxiv.org/abs/2302.07142",
+    "year": 2023,
+    "categories": [
+      "eess.SP"
+    ]
+  },
+  {
+    "id": "2106.11740",
+    "title": "LV-BERT: Exploiting Layer Variety for BERT",
+    "authors": [
+      "Weihao Yu",
+      "Zihang Jiang",
+      "Fei Chen",
+      "Qibin Hou",
+      "Jiashi Feng"
+    ],
+    "abstract": "Modern pre-trained language models are mostly built upon backbones stacking self-attention and feed-forward layers in an interleaved order. In this paper, beyond this stereotyped layer pattern, we aim to improve pre-trained models by exploiting layer variety from two aspects: the layer type set and the layer order. Specifically, besides the original self-attention and feed-forward layers, we introduce convolution into the layer type set, which is experimentally found beneficial to pre-trained models. Furthermore, beyond the original interleaved order, we explore more layer orders to discover more powerful architectures. However, the introduced layer variety leads to a large architecture space of more than billions of candidates, while training a single candidate model from scratch already requires huge computation cost, making it not affordable to search such a space by directly training large amounts of candidate models. To solve this problem, we first pre-train a supernet from which the weights of all candidate models can be inherited, and then adopt an evolutionary algorithm guided by pre-training accuracy to find the optimal architecture. Extensive experiments show that LV-BERT model obtained by our method outperforms BERT and its variants on various downstream tasks. For example, LV-BERT-small achieves 79.8 on the GLUE testing set, 1.8 higher than the strong baseline ELECTRA-small.",
+    "url": "https://arxiv.org/abs/2106.11740",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2604.25605",
+    "title": "Health System Scale Semantic Search Across Unstructured Clinical Notes",
+    "authors": [
+      "Faith Wavinya Mutinda",
+      "Spandana Makeneni",
+      "Anna Lin",
+      "Shivaji Dutta",
+      "Irit R. Rasooly",
+      "Patrick Dibussolo",
+      "Shivani Kamath Belman",
+      "Hessam Shahriari",
+      "Kevin Murphy",
+      "Alex B. Ruan",
+      "Barbara H. Chaiyachati",
+      "Sanjay Chainani",
+      "Robert W. Grundmeier",
+      "Scott M. Haag",
+      "Jeffrey M. Miller",
+      "Heather M. Griffis",
+      "Ian M. Campbell"
+    ],
+    "abstract": "Introduction: Semantic search, which retrieves documents based on conceptual similarity rather than keyword matching, offers substantial advantages for retrieval of clinical information. However, deploying semantic search across entire health systems, comprising hundreds of millions of clinical notes, presents formidable engineering, cost, and governance challenges that have prevented adoption. Methods: We deployed a semantic search system at a large children's hospital indexing 166 million clinical notes (484 million vectors) from 1.68 million patients. The system uses instruction-tuned qwen3-embedding-0.6B embeddings, stores vectors in a managed database with storage-optimized indexing, maintains full-text metadata in a low-latency key-value store, and operates within a HIPAA-compliant governance framework. We evaluated the system through three experiments: optimization of embedding model and chunking strategy using a physician-authored benchmark dataset, characterization of full-scale performance (cost, latency, retrieval quality), and clinical utility assessment via comparison of chart abstraction efficiency across three tasks. Results: The system delivers sub-second query latency (median 237 ms single-user, 451 ms 20-user concurrency) with monthly costs of approximately USD 4,000. Qwen3 embeddings with 300-token chunk size achieved 94.6% accuracy on a clinical question-answering benchmark. In clinical utility evaluation across three abstraction tasks, semantic search reduced time-to-completion by 24 to 89% compared to clinician-performed chart review while maintaining comparable inter-rater agreement. Conclusion: Health-system-scale semantic search is both technically and operationally feasible. The system provides infrastructure supporting interactive search, cohort generation, and downstream LLM-powered clinical applications without requiring specialized informatics expertise.",
+    "url": "https://arxiv.org/abs/2604.25605",
+    "year": 2026,
+    "categories": [
+      "cs.IR"
+    ]
+  },
+  {
+    "id": "1312.5150",
+    "title": "Semantic Jira - Semantic Expert Finder in the Bug Tracking Tool Jira",
+    "authors": [
+      "Velten Heyn",
+      "Adrian Paschke"
+    ],
+    "abstract": "The semantic expert recommender extension for the Jira bug tracking system semantically searches for similar tickets in Jira and recommends experts and links to existing organizational (Wiki) knowledge for each ticket. This helps to avoid redundant work and supports the search and collaboration with experts in the project management and maintenance phase based on semantically enriched tickets in Jira.",
+    "url": "https://arxiv.org/abs/1312.5150",
     "year": 2013,
-    "categories": ["cs.CL"]
+    "categories": [
+      "cs.SE"
+    ]
+  },
+  {
+    "id": "2006.07180",
+    "title": "High-Level ETL for Semantic Data Warehouses -- Full Version",
+    "authors": [
+      "Rudra Pratap Deb Nath",
+      "Oscar Romero",
+      "Torben Bach Pedersen",
+      "Katja Hose"
+    ],
+    "abstract": "The popularity of the Semantic Web (SW) encourages organizations to organize and publish semantic data using the RDF model. This growth poses new requirements to Business Intelligence (BI) technologies to enable On-Line Analytical Processing (OLAP)-like analysis over semantic data. The incorporation of semantic data into a Data Warehouse (DW) is not supported by the traditional Extract-Transform-Load (ETL) tools because they do not consider semantic issues in the integration process. In this paper, we propose a layer-based integration process and a set of high-level RDF-based ETL constructs required to define, map, extract, process, transform, integrate, update, and load (multidimensional) semantic data. Different to other ETL tools, we automate the ETL data flows by creating metadata at the schema level. Therefore, it relieves ETL developers from the burden of manual mapping at the ETL operation level. We create a prototype, named Semantic ETL Construct (SETLCONSTRUCT), based on the innovative ETL constructs proposed here. To evaluate SETLCONSTRUCT, we create a multidimensional semantic DW by integrating a Danish Business dataset and an EU Subsidy dataset using it and compare it with the previous programmable framework SETLPROG in terms of productivity, development time and performance. The evaluation shows that 1) SETLCONSTRUCT uses 92% fewer Number of Typed Characters (NOTC) than SETLPROG, and SETLAUTO (the extension of SETLCONSTRUCT for generating ETL execution flow automatically) further reduces the Number of Used Concepts (NOUC) by another 25%; 2) using SETLCONSTRUCT, the development time is almost cut in half compared to SETLPROG, and is cut by another 27% using SETLAUTO; 3) SETLCONSTRUCT is scalable and has similar performance compared to SETLPROG.",
+    "url": "https://arxiv.org/abs/2006.07180",
+    "year": 2020,
+    "categories": [
+      "cs.DB"
+    ]
+  },
+  {
+    "id": "2405.05431",
+    "title": "Searching for Programmatic Policies in Semantic Spaces",
+    "authors": [
+      "Rubens O. Moraes",
+      "Levi H. S. Lelis"
+    ],
+    "abstract": "Syntax-guided synthesis is commonly used to generate programs encoding policies. In this approach, the set of programs, that can be written in a domain-specific language defines the search space, and an algorithm searches within this space for programs that encode strong policies. In this paper, we propose an alternative method for synthesizing programmatic policies, where we search within an approximation of the language's semantic space. We hypothesized that searching in semantic spaces is more sample-efficient compared to syntax-based spaces. Our rationale is that the search is more efficient if the algorithm evaluates different agent behaviors as it searches through the space, a feature often missing in syntax-based spaces. This is because small changes in the syntax of a program often do not result in different agent behaviors. We define semantic spaces by learning a library of programs that present different agent behaviors. Then, we approximate the semantic space by defining a neighborhood function for local search algorithms, where we replace parts of the current candidate program with programs from the library. We evaluated our hypothesis in a real-time strategy game called MicroRTS. Empirical results support our hypothesis that searching in semantic spaces can be more sample-efficient than searching in syntax-based spaces.",
+    "url": "https://arxiv.org/abs/2405.05431",
+    "year": 2024,
+    "categories": [
+      "cs.LG"
+    ]
+  },
+  {
+    "id": "0807.4618",
+    "title": "AceWiki: A Natural and Expressive Semantic Wiki",
+    "authors": [
+      "Tobias Kuhn"
+    ],
+    "abstract": "We present AceWiki, a prototype of a new kind of semantic wiki using the controlled natural language Attempto Controlled English (ACE) for representing its content. ACE is a subset of English with a restricted grammar and a formal semantics. The use of ACE has two important advantages over existing semantic wikis. First, we can improve the usability and achieve a shallow learning curve. Second, ACE is more expressive than the formal languages of existing semantic wikis. Our evaluation shows that people who are not familiar with the formal foundations of the Semantic Web are able to deal with AceWiki after a very short learning phase and without the help of an expert.",
+    "url": "https://arxiv.org/abs/0807.4618",
+    "year": 2008,
+    "categories": [
+      "cs.HC"
+    ]
+  },
+  {
+    "id": "1403.0068",
+    "title": "Semantic Annotation and Search for Educational Resources Supporting Distance Learning",
+    "authors": [
+      "C. Nithya",
+      "K. Saravanan"
+    ],
+    "abstract": "Multimedia educational resources play an important role in education, particularly for distance learning environments. With the rapid growth of the multimedia web, large numbers of education articles video resources are increasingly being created by several different organizations. It is crucial to explore, share, reuse, and link these educational resources for better e-learning experiences. Most of the video resources are currently annotated in an isolated way, which means that they lack semantic connections. Thus, providing the facilities for annotating these video resources is highly demanded. These facilities create the semantic connections among video resources and allow their metadata to be understood globally. Adopting Linked Data technology, this paper introduces a video annotation and browser platform with two online tools: Notitia and Sansu-Wolke. Notitia enables users to semantically annotate video resources using vocabularies defined in the Linked Data cloud. Sansu-Wolke allows users to browse semantically linked educational video resources with enhanced web information from different online resources. In the prototype development, the platform uses existing video resources for education articles. The result of the initial development demonstrates the benefits of applying Linked Data technology in the aspects of reusability, scalability, and extensibility",
+    "url": "https://arxiv.org/abs/1403.0068",
+    "year": 2014,
+    "categories": [
+      "cs.IR"
+    ]
+  },
+  {
+    "id": "2605.05991",
+    "title": "A Case-Driven Multi-Agent Framework for E-Commerce Search Relevance",
+    "authors": [
+      "Global E-Commerce Search Relevance Team"
+    ],
+    "abstract": "Relevance is a foundation of user experience in e-commerce search. We view relevance optimization as a closed-loop ecosystem involving multiple human roles: users who provide feedback, product managers who define standards, annotators who label data, algorithm engineers who optimize models, and evaluators who assess performance. Because improving relevance in practice means systematically resolving user-perceived bad cases, we ask a system-level question: can this ecosystem be reimagined by replacing its human roles with autonomous agents? To answer this question, we propose a case-driven multi-agent framework that automates the pipeline from bad-case identification to resolution. The framework instantiates an Annotator Agent for multi-turn annotation, an Optimizer Agent for autonomous bad-case analysis and resolution, and a User Agent that identifies bad cases through conversational interaction, together forming an autonomous and continually evolving system. To make the framework practical in production, we further adopt a harness-engineering paradigm and build a unified retrieval-and-ranking relevance model for efficient training, an instruction-following relevance model for real-time case resolution, Global Memory to reduce information asymmetry across agents, a Deep Search Agent to target underestimation failures, and an agent-based chatbot for human--agent collaboration. Extensive human evaluation shows that the framework performs relevance-related tasks effectively, improves annotation accuracy, and enables more timely and generalizable bad-case resolution, indicating a practical paradigm for industrial search relevance optimization.",
+    "url": "https://arxiv.org/abs/2605.05991",
+    "year": 2026,
+    "categories": [
+      "cs.IR"
+    ]
+  },
+  {
+    "id": "2401.11841",
+    "title": "Semantic Web Technology for Agent Communication Protocols",
+    "authors": [
+      "Idoia Berges",
+      "Jes\u00fas Berm\u00fadez",
+      "Alfredo Go\u00f1i",
+      "Arantza Illarramendi"
+    ],
+    "abstract": "One relevant aspect in the development of the Semantic Web framework is the achievement of a real inter-agents communication capability at the semantic level. The agents should be able to communicate and understand each other using standard communication protocols freely, that is, without needing a laborious a priori preparation, before the communication takes place. For that setting we present in this paper a proposal that promotes to describe standard communication protocols using Semantic Web technology (specifically, OWL-DL and SWRL). Those protocols are constituted by communication acts. In our proposal those communication acts are described as terms that belong to a communication acts ontology, that we have developed, called CommOnt. The intended semantics associated to the communication acts in the ontology is expressed through social commitments that are formalized as fluents in the Event Calculus. In summary, OWL-DL reasoners and rule engines help in our proposal for reasoning about protocols. We define some comparison relationships (dealing with notions of equivalence and specialization) between protocols used by agents from different systems.",
+    "url": "https://arxiv.org/abs/2401.11841",
+    "year": 2024,
+    "categories": [
+      "cs.MA"
+    ]
+  },
+  {
+    "id": "2104.12405",
+    "title": "A dissemination workshop for introducing young Italian students to NLP",
+    "authors": [
+      "Lucio Messina",
+      "Lucia Busso",
+      "Claudia Roberta Combei",
+      "Ludovica Pannitto",
+      "Alessio Miaschi",
+      "Gabriele Sarti",
+      "Malvina Nissim"
+    ],
+    "abstract": "We describe and make available the game-based material developed for a laboratory run at several Italian science festivals to popularize NLP among young students.",
+    "url": "https://arxiv.org/abs/2104.12405",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2104.12422",
+    "title": "Teaching NLP with Bracelets and Restaurant Menus: An Interactive Workshop for Italian Students",
+    "authors": [
+      "Ludovica Pannitto",
+      "Lucia Busso",
+      "Claudia Roberta Combei",
+      "Lucio Messina",
+      "Alessio Miaschi",
+      "Gabriele Sarti",
+      "Malvina Nissim"
+    ],
+    "abstract": "Although Natural Language Processing (NLP) is at the core of many tools young people use in their everyday life, high school curricula (in Italy) do not include any computational linguistics education. This lack of exposure makes the use of such tools less responsible than it could be and makes choosing computational linguistics as a university degree unlikely. To raise awareness, curiosity, and longer-term interest in young people, we have developed an interactive workshop designed to illustrate the basic principles of NLP and computational linguistics to high school Italian students aged between 13 and 18 years. The workshop takes the form of a game in which participants play the role of machines needing to solve some of the most common problems a computer faces in understanding language: from voice recognition to Markov chains to syntactic parsing. Participants are guided through the workshop with the help of instructors, who present the activities and explain core concepts from computational linguistics. The workshop was presented at numerous outlets in Italy between 2019 and 2021, both face-to-face and online.",
+    "url": "https://arxiv.org/abs/2104.12422",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2412.08520",
+    "title": "GR-NLP-TOOLKIT: An Open-Source NLP Toolkit for Modern Greek",
+    "authors": [
+      "Lefteris Loukas",
+      "Nikolaos Smyrnioudis",
+      "Chrysa Dikonomaki",
+      "Spyros Barbakos",
+      "Anastasios Toumazatos",
+      "John Koutsikakis",
+      "Manolis Kyriakakis",
+      "Mary Georgiou",
+      "Stavros Vassos",
+      "John Pavlopoulos",
+      "Ion Androutsopoulos"
+    ],
+    "abstract": "We present GR-NLP-TOOLKIT, an open-source natural language processing (NLP) toolkit developed specifically for modern Greek. The toolkit provides state-of-the-art performance in five core NLP tasks, namely part-of-speech tagging, morphological tagging, dependency parsing, named entity recognition, and Greeklishto-Greek transliteration. The toolkit is based on pre-trained Transformers, it is freely available, and can be easily installed in Python (pip install gr-nlp-toolkit). It is also accessible through a demonstration platform on HuggingFace, along with a publicly available API for non-commercial use. We discuss the functionality provided for each task, the underlying methods, experiments against comparable open-source toolkits, and future possible enhancements. The toolkit is available at: https://github.com/nlpaueb/gr-nlp-toolkit",
+    "url": "https://arxiv.org/abs/2412.08520",
+    "year": 2024,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2106.02359v3",
+    "title": "How Good Is NLP? A Sober Look at NLP Tasks through the Lens of Social Impact",
+    "authors": [
+      "Zhijing Jin",
+      "Geeticka Chauhan",
+      "Brian Tse",
+      "Mrinmaya Sachan",
+      "Rada Mihalcea"
+    ],
+    "abstract": "Recent years have seen many breakthroughs in natural language processing (NLP), transitioning it from a mostly theoretical field to one with many real-world applications. Noting the rising number of applications of other machine learning and AI techniques with pervasive societal impact, we anticipate the rising importance of developing NLP technologies for social good. Inspired by theories in moral philosophy and global priorities research, we aim to promote a guideline for social good in the context of NLP. We lay the foundations via the moral philosophy definition of social good, propose a framework to evaluate the direct and indirect real-world impact of NLP tasks, and adopt the methodology of global priorities research to identify priority causes for NLP research. Finally, we use our theoretical framework to provide some practical guidelines for future NLP research for social good. Our data and code are available at http://github.com/zhijing-jin/nlp4sg_acl2021. In addition, we curate a list of papers and resources on NLP for social good at https://github.com/zhijing-jin/NLP4SocialGood_Papers.",
+    "url": "https://arxiv.org/abs/2106.02359v3",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2412.04784",
+    "title": "NLP-ADBench: NLP Anomaly Detection Benchmark",
+    "authors": [
+      "Yuangang Li",
+      "Jiaqi Li",
+      "Zhuo Xiao",
+      "Tiankai Yang",
+      "Yi Nian",
+      "Xiyang Hu",
+      "Yue Zhao"
+    ],
+    "abstract": "Anomaly detection (AD) is an important machine learning task with applications in fraud detection, content moderation, and user behavior analysis. However, AD is relatively understudied in a natural language processing (NLP) context, limiting its effectiveness in detecting harmful content, phishing attempts, and spam reviews. We introduce NLP-ADBench, the most comprehensive NLP anomaly detection (NLP-AD) benchmark to date, which includes eight curated datasets and 19 state-of-the-art algorithms. These span 3 end-to-end methods and 16 two-step approaches that adapt classical, non-AD methods to language embeddings from BERT and OpenAI. Our empirical results show that no single model dominates across all datasets, indicating a need for automated model selection. Moreover, two-step methods with transformer-based embeddings consistently outperform specialized end-to-end approaches, with OpenAI embeddings outperforming those of BERT. We release NLP-ADBench at https://github.com/USC-FORTIS/NLP-ADBench, providing a unified framework for NLP-AD and supporting future investigations.",
+    "url": "https://arxiv.org/abs/2412.04784",
+    "year": 2024,
+    "categories": [
+      "cs.CL"
+    ]
+  },
+  {
+    "id": "2105.00895",
+    "title": "Teaching NLP outside Linguistics and Computer Science classrooms: Some challenges and some opportunities",
+    "authors": [
+      "Sowmya Vajjala"
+    ],
+    "abstract": "NLP's sphere of influence went much beyond computer science research and the development of software applications in the past decade. We see people using NLP methods in a range of academic disciplines from Asian Studies to Clinical Oncology. We also notice the presence of NLP as a module in most of the data science curricula within and outside of regular university setups. These courses are taken by students from very diverse backgrounds. This paper takes a closer look at some issues related to teaching NLP to these diverse audiences based on my classroom experiences, and identifies some challenges the instructors face, particularly when there is no ecosystem of related courses for the students. In this process, it also identifies a few challenge areas for both NLP researchers and tool developers.",
+    "url": "https://arxiv.org/abs/2105.00895",
+    "year": 2021,
+    "categories": [
+      "cs.CL"
+    ]
   }
 ]

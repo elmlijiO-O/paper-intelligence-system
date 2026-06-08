@@ -59,12 +59,14 @@ def api_search():
 
 @app.route("/api/paper/<arxiv_id>")
 def api_paper(arxiv_id):
+    # Fetch paper
     paper = fetch_paper_by_id(arxiv_id)
     if not paper:
         paper = next((p for p in SEED_PAPERS if p["id"] == arxiv_id), None)
     if not paper:
         return jsonify({"error": True, "message": f"Paper {arxiv_id} not found.", "code": 404}), 404
 
+    # Person A: summary + keywords
     try:
         summary = summarize(paper["abstract"])
     except Exception:
@@ -73,6 +75,8 @@ def api_paper(arxiv_id):
         keywords = extract_keywords(paper["abstract"])
     except Exception:
         keywords = []
+
+    # Person B: section label + concepts
     try:
         section_label = classify_section(paper["abstract"])
     except Exception:
