@@ -1,5 +1,146 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>Search Papers</h1>
-<p>Frontend coming soon.</p>
+{% extends "base.html" %} {% block title %}Paper Intelligence — Search{%
+endblock %} {% block content %}
+<section class="hero">
+  <p class="hero__label">NLP Research Explorer</p>
+  <h1 class="hero__title">Find the papers<br /><em>that matter.</em></h1>
+  <p class="hero__sub">
+    Semantic search over academic literature. Powered by Transformers.
+  </p>
+
+  <form class="search-form" id="searchForm">
+    <div class="search-form__row">
+      <input
+        class="search-form__input"
+        type="text"
+        id="queryInput"
+        placeholder="e.g. attention mechanism, BERT fine-tuning, diffusion models…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="search-form__btn" type="submit">
+        <span class="btn-label">Search</span>
+        <span class="btn-spinner hidden" id="searchSpinner">◌</span>
+      </button>
+    </div>
+  </form>
+</section>
+
+<section class="results-section" id="resultsSection" style="display: none">
+  <div class="results-header">
+    <span class="results-header__label" id="resultsLabel">Results</span>
+    <span class="results-header__query" id="resultsQuery"></span>
+  </div>
+  <div class="results-grid" id="resultsGrid"></div>
+</section>
+
+<section class="featured-section" id="featuredSection">
+  <h2 class="featured-title">Featured Papers</h2>
+  <div class="results-grid" id="featuredGrid">
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+    <div class="skeleton-card"></div>
+  </div>
+</section>
+{% endblock %} {% block scripts %}
+<script>
+  // ─── Templates ────────────────────────────────────────────────────────────
+  function paperCard(paper) {
+    const authors = (paper.authors || []).slice(0, 3).join(", ");
+    const more =
+      paper.authors.length > 3 ? ` +${paper.authors.length - 3}` : "";
+    const cats = (paper.categories || [])
+      .map((c) => `<span class="tag">${c}</span>`)
+      .join("");
+
+    return `
+      <article class="paper-card" onclick="window.location='/paper/${paper.id}'">
+        <div class="paper-card__cats">${cats}</div>
+        <h3 class="paper-card__title">${paper.title}</h3>
+        <p class="paper-card__authors">${authors}${more}</p>
+        <p class="paper-card__abstract">${paper.abstract.slice(0, 180)}…</p>
+        <div class="paper-card__footer">
+          <span class="paper-card__year">${paper.year}</span>
+          <span class="paper-card__arrow">→</span>
+        </div>
+      </article>`;
+  }
+
+  function showError(msg) {
+    document.getElementById("resultsGrid").innerHTML =
+      `<p class="error-msg">${msg}</p>`;
+  }
+
+  // ─── Search ───────────────────────────────────────────────────────────────
+  async function runSearch(query) {
+    const spinner = document.getElementById("searchSpinner");
+    const btnLabel = document.querySelector(".btn-label");
+    const results = document.getElementById("resultsSection");
+    const featured = document.getElementById("featuredSection");
+    const grid = document.getElementById("resultsGrid");
+    const label = document.getElementById("resultsLabel");
+    const querySpan = document.getElementById("resultsQuery");
+
+    spinner.classList.remove("hidden");
+    btnLabel.classList.add("hidden");
+    grid.innerHTML = "";
+
+    try {
+      const resp = await fetch(
+        `/api/search?q=${encodeURIComponent(query)}&limit=10`,
+      );
+      const data = await resp.json();
+
+      if (!resp.ok) {
+        showError(data.message || "Search failed.");
+        return;
+      }
+
+      results.style.display = "block";
+      featured.style.display = "none";
+      label.textContent = `${data.count} result${data.count !== 1 ? "s" : ""}`;
+      querySpan.textContent = `"${data.query}"`;
+
+      if (data.results.length === 0) {
+        grid.innerHTML =
+          '<p class="error-msg">No papers found. Try a different query.</p>';
+        return;
+      }
+
+      grid.innerHTML = data.results.map(paperCard).join("");
+    } catch (e) {
+      showError("Network error. Is the server running?");
+    } finally {
+      spinner.classList.add("hidden");
+      btnLabel.classList.remove("hidden");
+    }
+  }
+
+  // ─── Featured papers on load ──────────────────────────────────────────────
+  async function loadFeatured() {
+    const grid = document.getElementById("featuredGrid");
+    try {
+      const resp = await fetch("/api/search?q=transformer&limit=5");
+      const data = await resp.json();
+      if (resp.ok && data.results.length > 0) {
+        grid.innerHTML = data.results.map(paperCard).join("");
+      } else {
+        grid.innerHTML =
+          '<p class="error-msg">Could not load featured papers.</p>';
+      }
+    } catch {
+      grid.innerHTML = '<p class="error-msg">Server unavailable.</p>';
+    }
+  }
+
+  // ─── Event listeners ──────────────────────────────────────────────────────
+  document.getElementById("searchForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = document.getElementById("queryInput").value.trim();
+    if (q) runSearch(q);
+  });
+
+  loadFeatured();
+</script>
 {% endblock %}
