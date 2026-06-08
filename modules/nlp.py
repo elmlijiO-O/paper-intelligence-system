@@ -4,7 +4,7 @@ import numpy as np
 
 # Load models once at import time — never inside a function
 print("[nlp] Loading summarization model...")
-_summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+_summarizer = pipeline("summarization", model="facebook/bart-large-cnn", framework="pt")
 print("[nlp] Summarization model ready.")
 
 
